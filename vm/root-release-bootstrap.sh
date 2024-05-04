@@ -44,10 +44,11 @@ cd iproute2-p4tc-pub/
 \/home/vagrant/libs/iproute2-p4tc-pub/configure --libbpf_dir \/home/vagrant/libs/libbpf/src/root/
 make && make install && cp etc/iproute2/p4tc_entities /etc/iproute2 && cp -r etc/iproute2/p4tc_entities.d /etc/iproute2
 
+sudo apt install -y python3-full
 # Download and install protobuf (required by p4c)
 sudo apt-get purge -y python3-protobuf || echo "Failed to remove python3-protobuf, probably because there was no such package installed"
-sudo pip3 install protobuf==3.18.1
-sudo pip3 install scapy
+# Needed for Debian: --break-system-packages
+sudo pip3 install --break-system-packages protobuf==3.18.1 scapy
 
 # Download and compile p4c
 cd /home/vagrant/libs/
